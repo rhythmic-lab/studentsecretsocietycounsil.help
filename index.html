@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSS | Open a Ticket</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-obsidian: #0d0d12;
+            --brand-mystic-purple: #7b2cbf;
+            --brand-cyber-cyan: #00f5ff;
+            --brand-void-pink: #ff00c8;
+            --gh-gray: #161b22;
+            --gh-border: #30363d;
+        }
+
+        body {
+            background-color: var(--brand-obsidian);
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* --- FORM STYLES --- */
+        #report-form-container { width: 100%; max-width: 800px; }
+        
+        .repo-header {
+            border-bottom: 1px solid var(--gh-border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .repo-name { font-size: 20px; color: var(--brand-cyber-cyan); font-weight: 600; }
+
+        .issue-container {
+            background-color: var(--gh-gray);
+            border: 1px solid var(--gh-border);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+        }
+
+        .issue-header {
+            background-color: #21262d;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--gh-border);
+            font-weight: bold;
+            color: white;
+        }
+
+        .issue-body { padding: 25px; }
+
+        label { font-weight: 600; margin-top: 15px; display: block; color: #8b949e; }
+
+        .form-control {
+            background-color: var(--brand-obsidian);
+            border: 1px solid var(--gh-border);
+            color: white;
+            transition: 0.2s;
+        }
+
+        .form-control:focus {
+            background-color: var(--brand-obsidian);
+            border-color: var(--brand-mystic-purple);
+            box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.3);
+            color: white;
+        }
+
+        .btn-submit {
+            background-color: #238636;
+            color: white;
+            font-weight: bold;
+            border: 1px solid rgba(240,246,252,0.1);
+            padding: 10px 25px;
+            margin-top: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover { background-color: #2ea043; }
+
+        /* --- SUCCESS STATE STYLES (Hidden by default) --- */
+        #success-state {
+            display: none;
+            text-align: center;
+            background: #1a1a24;
+            padding: 50px;
+            border-top: 8px solid var(--brand-cyber-cyan);
+            border-radius: 6px;
+            box-shadow: 0 0 50px rgba(123, 44, 191, 0.5);
+            max-width: 450px;
+        }
+
+        .hoodie-glow {
+            width: 140px; height: 140px; margin: 0 auto 20px;
+            border-radius: 50%; border: 3px solid var(--brand-mystic-purple);
+            background: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=300&auto=format&fit=crop');
+            background-size: cover; box-shadow: 0 0 25px var(--brand-mystic-purple);
+            filter: hue-rotate(280deg);
+        }
+
+        .success-title { font-family: 'Lobster', cursive; color: var(--brand-cyber-cyan); font-size: 2.8rem; }
+        
+        .code-font { font-family: 'Courier New', monospace; color: #00ff41; font-size: 13px; margin-top: 5px; }
+
+        .btn-society {
+            background: var(--brand-mystic-purple);
+            color: white; padding: 14px 25px; 
+            border-radius: 5px; font-weight: bold; text-decoration: none;
+            display: inline-block; margin-top: 25px; border: 1px solid var(--brand-cyber-cyan);
+        }
+
+        .btn-society:hover { background: var(--brand-void-pink); box-shadow: 0 0 20px var(--brand-void-pink); color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div id="report-form-container">
+        <div class="repo-header">
+            <span class="repo-name">StudentSecretSociety / <span style="color:white">Issues</span></span>
+            <div class="badge badge-pill badge-dark" style="border: 1px solid var(--gh-border); margin-left: 10px;">Public Bureau</div>
+        </div>
+
+        <div class="issue-container">
+            <div class="issue-header">📄 Open a new society report</div>
+            <div class="issue-body">
+                <form id="sss-form" action="https://formspree.io/f/xeevnkge" method="POST">
+                    
+                    <label for="id">Offender Guest ID (or Issue Name)</label>
+                    <input type="text" name="subject_id" id="id" class="form-control" placeholder="Ex: Guest #4021" required>
+
+                    <label for="type">Label / Category</label>
+                    <select name="category" id="type" class="form-control">
+                        <option value="report">🚨 User Report</option>
+                        <option value="bug">🐛 Technical Glitch</option>
+                        <option value="suggestion">💡 Feature Suggestion</option>
+                        <option value="security">🔒 Security Vulnerability</option>
+                    </select>
+
+                    <label for="desc">Evidence / Details</label>
+                    <textarea name="details" id="desc" rows="6" class="form-control" placeholder="What happened? The Society is watching." required></textarea>
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-submit">Submit New Issue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 12px; color: #8b949e; margin-top: 20px;">
+            "If it's not in the bag, it doesn't exist." — Transmission secured via mythical magic
+        </p>
+    </div>
+
+    <div id="success-state">
+        <div class="hoodie-glow"></div>
+        <h1 class="success-title">Report Sealed.</h1>
+        <p>The transmission is complete. <br> Return to the shadows, Paper-Chaser.</p>
+        
+        <div class="code-font">> LOG_STATUS: ENCRYPTED</div>
+        <div class="code-font">> CHANNEL: sss_counsil</div>
+
+        <a href="https://lnk.ink/studentsecretsociety" class="btn-society">RETURN TO SOCIETY</a>
+        
+        <div style="font-size: 10px; opacity: 0.4; margin-top: 30px; letter-spacing: 1px;">
+            VERIFIED BY THE MYTHICAL HOODIE-DWELLERS
+        </div>
+    </div>
+
+    <script>
+        // Logic to switch views without needing a second file
+        const form = document.getElementById('sss-form');
+        const formContainer = document.getElementById('report-form-container');
+        const successState = document.getElementById('success-state');
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            
+            // Send data to Formspree
+            fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    formContainer.style.display = 'none';
+                    successState.style.display = 'block';
+                } else {
+                    alert("Transmission failed. Are you connected to the Society's network?");
+                }
+            });
+        };
+    </script>
+
+</body>
+</html>
